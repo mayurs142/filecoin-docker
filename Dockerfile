@@ -35,6 +35,9 @@ COPY --from=build-env /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib/libgcc_s.so.1
 COPY config/config.toml /root/config.toml
 COPY scripts/entrypoint /bin/entrypoint
 
+# Fix for k8s deployment
+RUN mkdir /.lotus && chmod 777 /.lotus
+
 # API port
 EXPOSE 1234/tcp
 
